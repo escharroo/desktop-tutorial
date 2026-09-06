@@ -140,7 +140,7 @@
 
   /* ---------- Setup screen ---------- */
   .field{ margin-bottom:24px; }
-  .field label.field-label{ display:block; font-weight:600; font-size:var(--fs-small); margin-bottom:8px; }
+  .field .field-label{ display:block; font-weight:600; font-size:var(--fs-small); margin-bottom:14px; }
   .field input[type="text"]{
     width:100%; padding:13px 14px; border-radius:var(--radius-sm); border:1.5px solid var(--line);
     font-size:1rem; font-family:inherit; background:var(--white); color:var(--ink);
@@ -392,7 +392,7 @@
       <div class="kicker">The Friction Check &middot; a five-minute execution diagnostic</div>
       <h1>Five minutes to find the one thing your strategy is stuck behind</h1>
       <p class="lede">Your strategy is sound. It still is not landing. This check tells you which of seven things is stopping it, and which one to fix first.</p>
-      <p class="privacy-line">Your answers stay in your browser. Nothing is submitted, stored on a server or sent to me; this runs entirely on your device.</p>
+      <p class="privacy-line">Your answers stay in your browser. Nothing is submitted, stored on a server or sent to TriSynch; this runs entirely on your device.</p>
 
       <div class="layer-card">
         <h3>System readiness &middot; the machine</h3>
@@ -410,7 +410,7 @@
       <ol class="steps">
         <li class="step">
           <div class="step-num">1</div>
-          <div class="step-body"><h4>Rate your organisation</h4><p>Be honest, not generous. The useful answer is the uncomfortable one.</p></div>
+          <div class="step-body"><h4>Rate your team</h4><p>Be honest, not generous. The useful answer is the uncomfortable one.</p></div>
         </li>
         <li class="step">
           <div class="step-num">2</div>
@@ -434,13 +434,12 @@
       <h2 class="q-title">Set up your check</h2>
 
       <div class="field">
-        <label class="field-label" for="teamNameInput">Which team are you answering the people questions for?</label>
+        <label class="field-label" for="teamNameInput">Which team are you answering the people questions for? (optional)</label>
         <input type="text" id="teamNameInput" placeholder="e.g. Northside maintenance crew" autocomplete="off">
-        <div class="hint">Optional. Name the one team whose daily decisions most determine whether this strategy lands &mdash; we'll echo it back in your results.</div>
       </div>
 
       <div class="field">
-        <div class="field-label">Do this team's daily decisions directly shape whether the strategy lives or dies &mdash; do they specify, buy, design, price, schedule or sell?</div>
+        <div class="field-label">Do this team's daily decisions directly shape whether the strategy lives or dies?</div>
         <div class="yesno" role="group" aria-label="Decision-shaping team">
           <button type="button" id="decisionNoBtn" class="selected" aria-pressed="true">No</button>
           <button type="button" id="decisionYesBtn" aria-pressed="false">Yes</button>
