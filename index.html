@@ -20,6 +20,8 @@
     --white:#FFFFFF;
     --line:#D6DEDF;
     --muted:#5C6C6E;
+    --panel:#1A2426;
+    --panel-border:#1A2426;
 
     --fs-display: clamp(1.9rem, 5vw, 2.9rem);
     --fs-h1: clamp(1.5rem, 3.6vw, 2.1rem);
@@ -43,6 +45,8 @@
       --line:#324242;
       --muted:#A7B7B7;
       --amber-tint:#3A2E1C;
+      --panel:#243433;
+      --panel-border:#3A4C4B;
     }
   }
 
@@ -196,12 +200,12 @@
 
   /* Score strip: the designed object */
   .score-strip{
-    background:var(--ink); color:var(--white); border-radius:var(--radius);
+    background:var(--panel); color:#fff; border:1px solid var(--panel-border); border-radius:var(--radius);
     padding:26px 22px 22px; margin:24px 0 6px;
     break-inside:avoid;
   }
   .strip-row-label{ font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--amber); margin-bottom:10px; }
-  .strip-row-label .team-name{ color:var(--white); opacity:.8; font-weight:500; text-transform:none; letter-spacing:0; }
+  .strip-row-label .team-name{ color:#fff; opacity:.8; font-weight:500; text-transform:none; letter-spacing:0; }
   .strip-row{ display:grid; grid-template-columns:repeat(4, 1fr); gap:8px; margin-bottom:20px; }
   .strip-row.fire-row{ grid-template-columns:repeat(3, 1fr); margin-bottom:0; }
   .strip-tile{
@@ -255,7 +259,7 @@
   .blindspot-sub h4{ font-size:.95rem; font-weight:600; margin:0 0 6px; }
   .blindspot-sub p{ font-size:var(--fs-small); color:var(--muted); }
 
-  .cta-panel{ background:var(--ink); color:var(--white); border-radius:var(--radius); padding:30px 26px; text-align:center; margin:32px 0 16px; }
+  .cta-panel{ background:var(--panel); color:#fff; border:1px solid var(--panel-border); border-radius:var(--radius); padding:30px 26px; text-align:center; margin:32px 0 16px; }
   .cta-panel p{ color:rgba(255,255,255,.8); max-width:480px; margin:0 auto 20px; font-size:var(--fs-small); }
   .cta-panel .btn{ background:var(--amber); }
   .cta-panel .btn:hover{ background:#a86e2e; }
