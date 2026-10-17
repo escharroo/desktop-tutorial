@@ -415,7 +415,7 @@
       <div class="kicker">The Stall Score &middot; a five-minute self-assessment</div>
       <h1>Five minutes to find the one thing your strategy is stuck behind</h1>
       <p class="lede">Your strategy is sound. It is still not landing. This assessment scores your execution across seven warning signs. Find out which one is holding everything back, and which one to fix first.</p>
-      <p class="privacy-line">Your answers stay in your browser. Nothing is submitted, stored on a server or sent to TriSynch; this runs entirely on your device.</p>
+      <p class="privacy-line">Your answers stay in your browser while you work through it. Nothing is sent to TriSynch unless you ask for your results by email at the end.</p>
 
       <div class="layer-card">
         <h3>System readiness &middot; the machine</h3>
@@ -564,15 +564,6 @@
           <h3>On its way.</h3>
           <p>Your results are heading to <strong id="emDoneAddress"></strong>. It comes from Edwin@trisynch.com; if it isn't in your inbox within a few minutes, check your spam folder.</p>
         </div>
-      </div>
-
-      <div class="save-block">
-        <div class="secondary-actions">
-          <button type="button" id="saveBtn">Download PDF</button>
-          <button type="button" id="copyBtn">Copy my results</button>
-          <button type="button" id="downloadBtn">Download as a text file</button>
-        </div>
-        <div class="copy-confirm" id="copyConfirm" aria-live="polite"></div>
       </div>
 
       <footer>
@@ -1078,72 +1069,6 @@
     div.textContent = str;
     return div.innerHTML;
   }
-
-  // ---------- Save / copy / download ----------
-  function plainTextResults(){
-    var lines = [];
-    lines.push("The Stall Score — results");
-    if (state.teamName) lines.push("Team: " + state.teamName);
-    lines.push("");
-    lines.push("THE MACHINE");
-    MACHINE_ORDER.forEach(function(key){
-      lines.push("  " + ELEMENTS[key].name + ": " + state.scores[key] + " (" + STAGE_LADDER[state.scores[key]].name + ")");
-    });
-    lines.push("");
-    lines.push("THE FIRE");
-    FIRE_ORDER.forEach(function(key){
-      lines.push("  " + ELEMENTS[key].name + ": " + state.scores[key] + " (" + STAGE_LADDER[state.scores[key]].name + ")");
-    });
-    lines.push("");
-    var constraint = getPrimaryConstraint(state.scores, state.decisionShaping);
-    if (constraint) {
-      var el = ELEMENTS[constraint.key];
-      var fm = FIRST_MOVE[constraint.key];
-      lines.push("CONSTRAINT: " + el.name + " (" + (el.layer === "machine" ? "the machine" : "the fire") + ")");
-      lines.push("First move (30 days): " + fm.move30);
-      lines.push("Watch at 90 days: " + fm.watch90);
-    } else {
-      lines.push("CONSTRAINT: none — nothing is setting a ceiling right now.");
-    }
-    lines.push("");
-    lines.push("trisynch.com");
-    return lines.join("\n");
-  }
-
-  document.getElementById("saveBtn").addEventListener("click", function(){
-    window.print();
-  });
-
-  document.getElementById("copyBtn").addEventListener("click", function(){
-    var text = plainTextResults();
-    var confirmEl = document.getElementById("copyConfirm");
-    function showConfirm(msg){
-      confirmEl.textContent = msg;
-      setTimeout(function(){ confirmEl.textContent = ""; }, 2500);
-    }
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(function(){
-        showConfirm("Copied to clipboard.");
-      }).catch(function(){
-        showConfirm("Could not copy — try the text file download instead.");
-      });
-    } else {
-      showConfirm("Clipboard unavailable — try the text file download instead.");
-    }
-  });
-
-  document.getElementById("downloadBtn").addEventListener("click", function(){
-    var text = plainTextResults();
-    var blob = new Blob([text], { type: "text/plain" });
-    var url = URL.createObjectURL(blob);
-    var a = document.createElement("a");
-    a.href = url;
-    a.download = "stall-score-results.txt";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
-  });
 
   // ---------- Results link (reopens the dashboard from the URL) ----------
   // Format: #r=<7 scores in ALL_ORDER><decision-shaping 0/1>[&t=<team name>]
