@@ -278,7 +278,6 @@
   .email-fields input[aria-invalid="true"]{ border-color:var(--error); }
   .email-opt{ display:flex; gap:10px; align-items:flex-start; font-size:var(--fs-small); margin-bottom:18px; cursor:pointer; }
   .email-opt input{ margin-top:2px; width:18px; height:18px; accent-color:var(--teal); flex:none; cursor:pointer; }
-  .email-block .btn.secondary{ border-color:var(--teal); }
   .email-status{ font-size:var(--fs-caption); min-height:1.2em; margin:10px 0 0; color:var(--muted); }
   .email-status.error{ color:var(--error); font-weight:600; }
   .email-privacy{ font-size:var(--fs-caption); color:var(--muted); margin:6px 0 0; }
@@ -556,7 +555,7 @@
             <input type="checkbox" id="emNewsletter">
             <span>Also sign me up for Execution Insights, the quarterly newsletter, written for people who have to make strategy land. I can unsubscribe at any time.</span>
           </label>
-          <button class="btn secondary block" type="submit" id="emSubmit">Email me my results</button>
+          <button class="btn block" type="submit" id="emSubmit">Email me my results</button>
           <p class="email-status" id="emStatus" aria-live="polite"></p>
           <p class="email-privacy">Your answers stay on this page unless you ask for this email. If you do, your name, email and scores are stored so I can send it and follow up. <a href="https://trisynch.com/privacy-policy/" target="_blank" rel="noopener">Privacy policy</a></p>
         </form>
