@@ -464,8 +464,9 @@
       </div>
 
       <div class="field">
-        <div class="field-label">Is this team critical to delivering the strategy?</div>
-        <div class="yesno" role="group" aria-label="Decision-shaping team">
+        <div class="field-label" id="decisionLabel">Is this team critical to delivering the strategy?</div>
+        <div class="hint" id="decisionHint" style="margin:0 0 12px;">Every team plays a part. Answer yes if this team&rsquo;s day-to-day choices decide whether the strategy succeeds, for example what gets specified, bought, designed, priced, scheduled or sold. Those teams need a higher level of people readiness, so we score them against a higher bar.</div>
+        <div class="yesno" role="group" aria-labelledby="decisionLabel" aria-describedby="decisionHint">
           <button type="button" id="decisionNoBtn" aria-pressed="false">No</button>
           <button type="button" id="decisionYesBtn" aria-pressed="false">Yes</button>
         </div>
