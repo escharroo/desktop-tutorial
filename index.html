@@ -459,7 +459,7 @@
       <h2 class="q-title">Set up your check</h2>
 
       <div class="field">
-        <label class="field-label" for="teamNameInput">Which team are you answering the people questions for? (optional)</label>
+        <label class="field-label" for="teamNameInput">Which team are you answering for? (optional)</label>
         <input type="text" id="teamNameInput" placeholder="e.g. Northside maintenance crew" autocomplete="off">
       </div>
 
@@ -500,7 +500,7 @@
     <!-- RESULTS -->
     <section class="screen" id="screen-results">
       <div class="results-hero">
-        <div class="kicker">Your results</div>
+        <div class="kicker" id="resultsKicker">Your results</div>
         <h1>Here's what's stopping it</h1>
       </div>
 
@@ -602,17 +602,17 @@
 
   var ELEMENTS = {
     priorities: {
-      name: "Priorities", layer: "machine", question: "How are priorities determined?",
+      name: "Priorities", layer: "machine", question: "How are this team\u2019s priorities set?",
       levels: {
-        1: { quote: "“Anything can become a priority”", desc: "No structured priority-setting. Teams work reactively on whatever surfaces each day. We never stop anything; work keeps getting added and the pile just gets bigger." },
+        1: { quote: "“Anything can become a priority”", desc: "No structured priority-setting. The team works reactively on whatever surfaces each day. We never stop anything; work keeps getting added and the pile just gets bigger." },
         2: { quote: "“Leaders decide priorities”", desc: "Leaders set priorities; teams execute them. They only stop things when they go wrong or a manager steps in; whether they have the room for it never comes into the decision." },
-        3: { quote: "“We set priorities from strategy once”", desc: "Teams select priorities from a defined list aligned to strategy. They rarely revisit them. They make room by dropping things within their own work, the list itself stays as it is." },
-        4: { quote: "“We have a cadenced refresh”", desc: "Teams regularly refresh priorities based on current conditions. They add nothing without taking something off, and they can point to where the time it freed up ended up." },
-        5: { quote: "“We continuously adapt”", desc: "Teams continuously test priorities and refine on outcome data. They stop work because the numbers tell them to, including work that's going fine but is no longer worth the people it ties up." }
+        3: { quote: "“We set priorities from strategy once”", desc: "The team selects priorities from a defined list aligned to strategy. They rarely revisit them. They make room by dropping things within their own work, the list itself stays as it is." },
+        4: { quote: "“We have a cadenced refresh”", desc: "The team regularly refreshes priorities based on current conditions. They add nothing without taking something off, and they can point to where the time it freed up ended up." },
+        5: { quote: "“We continuously adapt”", desc: "The team continuously tests priorities and refines them on outcome data. They stop work because the numbers tell them to, including work that's going fine but is no longer worth the people it ties up." }
       }
     },
     ownership: {
-      name: "Ownership", layer: "machine", question: "How is ownership organised?",
+      name: "Ownership", layer: "machine", question: "How is ownership organised in this team?",
       levels: {
         1: { quote: "“No one owns outcomes”", desc: "Priorities and goals have no one accountable and no indicators." },
         2: { quote: "“Ownership is assigned”", desc: "Leaders assign owners and chase updates; nothing moves unless leaders ask." },
@@ -622,23 +622,23 @@
       }
     },
     accountability: {
-      name: "Accountability", layer: "machine", question: "How is progress monitored?",
+      name: "Accountability", layer: "machine", question: "How is this team\u2019s progress monitored?",
       levels: {
         1: { quote: "“We don’t review consistently”", desc: "No regular reviews; accountability is inconsistent." },
-        2: { quote: "“Only leaders convene reviews”", desc: "Reviews happen only when a leader calls one. There is no standing rhythm and no review a team runs for itself." },
-        3: { quote: "“We run regular reviews”", desc: "Teams conduct reviews on a defined schedule." },
-        4: { quote: "“How we operate, always”", desc: "Teams consistently review and drive tracking and accountability." },
+        2: { quote: "“Only leaders convene reviews”", desc: "Reviews happen only when a leader calls one. There is no standing rhythm and no review the team runs for itself." },
+        3: { quote: "“We run regular reviews”", desc: "The team runs reviews on a defined schedule." },
+        4: { quote: "“How we operate, always”", desc: "The team consistently reviews its own progress and drives tracking and accountability." },
         5: { quote: "“Reviews drive action and remove barriers”", desc: "Reviews actively drive decisions and unblock progress." }
       }
     },
     communication: {
-      name: "Communication", layer: "machine", question: "How visible is progress?",
+      name: "Communication", layer: "machine", question: "How visible is progress between this team and others?",
       levels: {
-        1: { quote: "“Information stays local”", desc: "Teams share nothing across units. Results and goals are invisible outside each silo." },
+        1: { quote: "“Information stays local”", desc: "The team shares nothing with other teams. Its results and goals are invisible outside it." },
         2: { quote: "“Leaders communicate”", desc: "Leaders share goals and progress; limited team-level sharing." },
-        3: { quote: "“Teams share progress”", desc: "Teams voluntarily share updates with peers when requested or when they see relevance." },
-        4: { quote: "“Everyone sees progress”", desc: "Goals and progress are visible by default: everyone can browse others' work without asking." },
-        5: { quote: "“We act on shared insight”", desc: "Teams actively adjust their work based on what they see others doing and coordination happens in real time." }
+        3: { quote: "“Teams share progress”", desc: "The team shares updates with other teams when asked, or when it sees the relevance." },
+        4: { quote: "“Everyone sees progress”", desc: "Goals and progress are visible by default: the team can see other teams' work, and they can see its work, without asking." },
+        5: { quote: "“We act on shared insight”", desc: "The team actively adjusts its work based on what it sees other teams doing, and coordination happens in real time." }
       }
     },
     capability: {
@@ -877,8 +877,8 @@
     document.getElementById("qLegend").textContent = el.name + ": " + el.question;
     var teamLabel = (state.teamName || "").trim();
     document.getElementById("qScope").textContent = el.layer === "machine"
-      ? "Answer for your whole organisation, not just " + (teamLabel || "your own team") + "."
-      : "Answer for " + (teamLabel || "the team you named") + ".";
+      ? "Answer for " + (teamLabel || "your team") + ", as the team experiences it day to day."
+      : "Answer for " + (teamLabel || "your team") + ".";
 
     var optionsHtml = [1,2,3,4,5].map(function(score){
       var lvl = el.levels[score];
@@ -993,8 +993,9 @@
 
     buildStripRow(document.getElementById("machineStripRow"), MACHINE_ORDER, constraintKey);
     buildStripRow(document.getElementById("fireStripRow"), FIRE_ORDER, constraintKey);
-    document.getElementById("fireRowLabel").innerHTML = "The fire" +
-      (state.teamName ? ' <span class="team-name">&mdash; ' + escapeHtml(state.teamName) + '</span>' : "");
+    document.getElementById("fireRowLabel").textContent = "The fire";
+    document.getElementById("resultsKicker").textContent = "Your results" +
+      (state.teamName && state.teamName.trim() ? " \u00b7 " + state.teamName.trim() : "");
 
     var constraintArea = document.getElementById("constraintArea");
     var firstMoveArea = document.getElementById("firstMoveArea");
