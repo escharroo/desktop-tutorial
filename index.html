@@ -124,6 +124,9 @@
   .kicker{ text-align:center; font-size:var(--fs-caption); font-weight:600; color:var(--amber); text-transform:uppercase; letter-spacing:.08em; margin-bottom:14px; }
   .intro h1{ text-align:center; font-size:var(--fs-display); max-width:600px; margin:0 auto 16px; }
   .intro .lede{ font-size:var(--fs-body); color:var(--muted); max-width:560px; margin:0 auto 8px; text-align:center; }
+  .lede-list{ margin:0 0 1em; padding-left:1.25em; color:var(--ink); font-size:var(--fs-body); }
+  .lede-list li{ margin-bottom:8px; }
+  .lede-list li::marker{ color:var(--teal); }
   .privacy-line{ text-align:center; font-size:var(--fs-caption); color:var(--muted); max-width:520px; margin:14px auto 32px; font-style:italic; }
 
   .layer-card{ background:var(--card); border-radius:var(--radius); padding:20px 22px; margin-bottom:14px; }
@@ -418,7 +421,12 @@
     <section class="screen" id="screen-intro">
       <div class="kicker">The Stall Score &middot; a five-minute self-assessment</div>
       <h1>Five minutes to find the one thing your strategy is stuck behind</h1>
-      <p class="lede">Your strategy is sound. It is still not landing. This assessment shows you why by scoring seven friction points. Four make up the machine: priorities, ownership, accountability and communication. They give the work structure, and they&rsquo;re quick to fix. But a machine doesn&rsquo;t run on its own. The other three are the fire that drives it: your people need to be capable, committed and enabled to act. The machine sets the ceiling. Your people decide how close you get to it. Find out which friction point is holding everything back, and which one to fix first.</p>
+      <p class="lede">Your strategy is sound. It is still not landing. This assessment shows you why by scoring seven friction points.</p>
+      <ul class="lede-list">
+        <li>Four make up the machine: priorities, ownership, accountability and communication. They give the work structure, and they&rsquo;re quick to fix. But a machine doesn&rsquo;t run on its own.</li>
+        <li>The other three are the fire that drives it: your people need to be capable, committed and enabled to act.</li>
+      </ul>
+      <p class="lede">The machine sets the ceiling. Your people decide how close you get to it. Find out which friction point is holding everything back, and which one to fix first.</p>
       <p class="privacy-line">Your answers stay in your browser while you work through it. Nothing is sent to TriSynch unless you ask for your results by email at the end.</p>
 
       <hr class="dotted-rule">
