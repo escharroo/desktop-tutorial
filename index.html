@@ -414,7 +414,7 @@
 
 <div class="progress-shell" id="progressShell">
   <div class="progress-meta">
-    <span class="layer-tag" id="progressLayer">The machine</span>
+    <span class="layer-tag" id="progressLayer">The system</span>
     <span id="progressCount">1 of 7</span>
   </div>
   <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
@@ -438,12 +438,12 @@
     <section class="screen" id="screen-intro">
       <div class="kicker">The Stall Score &middot; a five-minute self-assessment</div>
       <h1>Five minutes to find the one thing your strategy is stuck behind</h1>
-      <p class="lede">Your strategy is sound. It is still not landing. This assessment shows you why by scoring seven friction points.</p>
+      <p class="lede">Your strategy is approved. It still isn&rsquo;t landing. This assessment shows you why, by scoring seven friction points.</p>
       <ul class="lede-list">
-        <li>Four make up the machine: priorities, ownership, accountability and communication. They give the work structure, and they&rsquo;re quick to fix. But a machine doesn&rsquo;t run on its own.</li>
-        <li>The other three are the fire that drives it: your people need to be capable, committed and enabled to act.</li>
+        <li>Four make up the system: priorities, ownership, rhythm and visibility. They give the work structure, and they&rsquo;re quicker to fix. But structure doesn&rsquo;t move on its own.</li>
+        <li>Three are about your people: head, heart and hands. People need the capability, the commitment and the authority to act.</li>
       </ul>
-      <p class="lede">The machine sets the ceiling. Your people decide how close you get to it. Find out which friction point is holding everything back, and which one to fix first.</p>
+      <p class="lede">The system sets the ceiling. Your people decide how close you get to it. Find out which friction point is holding everything back, and which one to fix first.</p>
       <p class="privacy-line">Your answers stay in your browser while you work through it. Nothing is sent to TriSynch unless you ask for your results by email at the end.</p>
 
       <hr class="dotted-rule">
@@ -523,12 +523,12 @@
       </div>
 
       <div class="score-strip" id="scoreStrip">
-        <div class="strip-row-label">The machine</div>
+        <div class="strip-row-label">The system</div>
         <div class="strip-row" id="machineStripRow"></div>
-        <div class="strip-row-label" style="margin-top:20px;" id="fireRowLabel">The fire</div>
+        <div class="strip-row-label" style="margin-top:20px;" id="fireRowLabel">Your people</div>
         <div class="strip-row fire-row" id="fireStripRow"></div>
       </div>
-      <p class="no-total-note"><strong>The dashboard doesn&rsquo;t show an average score</strong> because a system with one broken mechanism and six strong ones performs like the broken one. A combined number would hide precisely what you came here to find. Read the seven separately. First check which row sits lower, the machine or the fire. Then look at the individual scores.</p>
+      <p class="no-total-note"><strong>The dashboard doesn&rsquo;t show an average score</strong> because a system with one broken friction point and six strong ones performs like the broken one. A combined number would hide precisely what you came here to find. Read the seven separately. First check which row sits lower, the system or your people. Then look at the individual scores.</p>
 
       <div id="constraintArea"></div>
 
@@ -622,71 +622,71 @@
     priorities: {
       name: "Priorities", layer: "machine", question: "How are this team\u2019s priorities set?",
       levels: {
-        1: { quote: "“Anything can become a priority”", desc: "No structured priority-setting. The team works reactively on whatever surfaces each day. We never stop anything; work keeps getting added and the pile just gets bigger." },
-        2: { quote: "“Leaders decide priorities”", desc: "Leaders set priorities; teams execute them. They only stop things when they go wrong or a manager steps in; whether they have the room for it never comes into the decision." },
-        3: { quote: "“We set priorities from strategy once”", desc: "The team selects priorities from a defined list aligned to strategy. They rarely revisit them. They make room by dropping things within their own work, the list itself stays as it is." },
-        4: { quote: "“We have a cadenced refresh”", desc: "The team regularly refreshes priorities based on current conditions. They add nothing without taking something off, and they can point to where the time it freed up ended up." },
-        5: { quote: "“We continuously adapt”", desc: "The team continuously tests priorities and refines them on outcome data. They stop work because the numbers tell them to, including work that's going fine but is no longer worth the people it ties up." }
+        1: { quote: "“Anything can become a priority”", desc: "The team works on whatever comes up that day. Nothing gets stopped, so the pile keeps growing." },
+        2: { quote: "“Leaders decide priorities”", desc: "Leaders set priorities and the team carries them out. Work stops only when it goes wrong or a manager steps in. Whether the team has room for it never comes up." },
+        3: { quote: "“We set priorities once”", desc: "The team picks priorities from the strategy and rarely revisits them. It makes room by squeezing its own work. The list itself never shrinks." },
+        4: { quote: "“We keep the list short”", desc: "The team reviews its priorities regularly and keeps the list short. Nothing is added without something coming off, and it can show where the freed-up time went." },
+        5: { quote: "“We stop what no longer pays”", desc: "The team tests priorities against results and stops work when the numbers say so, including work that’s going fine but is no longer worth the people it ties up." }
       }
     },
     ownership: {
-      name: "Ownership", layer: "machine", question: "How is ownership organised in this team?",
+      name: "Ownership", layer: "machine", question: "Who owns each priority, and what can they decide?",
       levels: {
-        1: { quote: "“No one owns outcomes”", desc: "Priorities and goals have no one accountable and no indicators." },
-        2: { quote: "“Ownership is assigned”", desc: "Leaders assign owners and chase updates; nothing moves unless leaders ask." },
-        3: { quote: "“Owners manage outcomes”", desc: "Each priority has an owner with scheduled update cadence; tracking happens but requires calendar discipline." },
-        4: { quote: "“Owners act without prompting”", desc: "Indicators stay current and visible because owners treat it as their responsibility; no reminders needed." },
-        5: { quote: "“Owners anticipate and adjust early”", desc: "Leading indicators trigger action; owners reallocate or pivot when trends shift." }
+        1: { quote: "“No one owns outcomes”", desc: "Priorities have no named owner. When something slips, it’s unclear whose it was." },
+        2: { quote: "“Ownership is shared”", desc: "Priorities sit with several co-leads or a committee. Things move only when they all agree." },
+        3: { quote: "“Each priority has one owner”", desc: "Every priority has one named owner, and everyone knows who it is. Most decisions still go up for sign-off." },
+        4: { quote: "“Owners decide”", desc: "Owners make the calls on their priority without waiting for sign-off and know who to go to when they can’t." },
+        5: { quote: "“Owners act early”", desc: "Owners spot trouble before it shows in the numbers and move people or resources to deal with it." }
       }
     },
     accountability: {
-      name: "Accountability", layer: "machine", question: "How is this team\u2019s progress monitored?",
+      name: "Rhythm", layer: "machine", question: "How does this team review its progress?",
       levels: {
-        1: { quote: "“We don’t review consistently”", desc: "No regular reviews; accountability is inconsistent." },
-        2: { quote: "“Only leaders convene reviews”", desc: "Reviews happen only when a leader calls one. There is no standing rhythm and no review the team runs for itself." },
-        3: { quote: "“We run regular reviews”", desc: "The team runs reviews on a defined schedule." },
-        4: { quote: "“How we operate, always”", desc: "The team consistently reviews its own progress and drives tracking and accountability." },
-        5: { quote: "“Reviews drive action and remove barriers”", desc: "Reviews actively drive decisions and unblock progress." }
+        1: { quote: "“We don’t review regularly”", desc: "Reviews happen when something goes wrong. Follow-up depends on someone chasing." },
+        2: { quote: "“Leaders call the reviews”", desc: "Reviews happen when a leader calls one. There is no standing rhythm the team runs for itself." },
+        3: { quote: "“We review on a schedule”", desc: "The team reviews progress on a fixed schedule, but reviews mostly end with updates and few decisions." },
+        4: { quote: "“Every review ends in decisions”", desc: "The team runs its own reviews at a pace that suits the work. Each one ends with decisions and a named owner for each. Follow-up happens without chasing." },
+        5: { quote: "“Reviews clear the way”", desc: "Reviews surface blockers early and clear them or escalate quickly when the team can’t. The rhythm keeps running without a leader in the room." }
       }
     },
     communication: {
-      name: "Communication", layer: "machine", question: "How visible is progress between this team and others?",
+      name: "Visibility", layer: "machine", question: "Do this team\u2019s results reach the people they affect?",
       levels: {
-        1: { quote: "“Information stays local”", desc: "The team shares nothing with other teams. Its results and goals are invisible outside it." },
-        2: { quote: "“Leaders communicate”", desc: "Leaders share goals and progress; limited team-level sharing." },
-        3: { quote: "“Teams share progress”", desc: "The team shares updates with other teams when asked, or when it sees the relevance." },
-        4: { quote: "“Everyone sees progress”", desc: "Goals and progress are visible by default: the team can see other teams' work, and they can see its work, without asking." },
-        5: { quote: "“We act on shared insight”", desc: "The team actively adjusts its work based on what it sees other teams doing, and coordination happens in real time." }
+        1: { quote: "“Results stay local”", desc: "The team’s results rarely leave the team. Other teams find out late, if at all." },
+        2: { quote: "“Leaders pass it on”", desc: "Results travel only when a leader decides to share them, usually upwards." },
+        3: { quote: "“Shared when asked”", desc: "The team shares results when someone asks, or when the link to another team is obvious." },
+        4: { quote: "“Results reach who they affect”", desc: "The team routinely shares results, including problems, with the teams whose decisions they affect. What works is written down so others can reuse it." },
+        5: { quote: "“Results change decisions elsewhere”", desc: "Other teams adjust their plans based on this team’s results, and the team does the same with theirs. What works spreads without anyone starting from scratch." }
       }
     },
     capability: {
-      name: "Capability", layer: "fire", question: "People understand what the strategy means for their specific role and have the necessary knowledge and skills.",
+      name: "Head \u00b7 Capability", layer: "fire", question: "Does the team know what the strategy means for its own work?",
       levels: {
-        1: { quote: "“This isn’t on our radar”", desc: "We don’t know what the strategy means for our role or how we can contribute." },
-        2: { quote: "“We wait for direction”", desc: "We rely on guidance from leaders to understand what to do." },
-        3: { quote: "“We're developing the skills”", desc: "We are actively developing the knowledge and skills needed for our roles." },
-        4: { quote: "“This is how we work”", desc: "We consistently apply strategic knowledge in our day-to-day work." },
-        5: { quote: "“We improve and scale it”", desc: "We continuously improve our expertise and actively support and coach others." }
+        1: { quote: "“This isn’t on our radar”", desc: "The team doesn’t know what the strategy means for its work, or how it can contribute." },
+        2: { quote: "“We wait for direction”", desc: "The team relies on leaders to tell it what to do." },
+        3: { quote: "“We’re building the skills”", desc: "The team understands what the strategy asks of it and is building the knowledge and skills to deliver it." },
+        4: { quote: "“This is how we work”", desc: "The team can explain what the strategy changes about its week, and uses that to tell a priority from a pet project." },
+        5: { quote: "“We teach it”", desc: "The team keeps building its expertise and coaches others to do the same." }
       }
     },
     commitment: {
-      name: "Commitment", layer: "fire", question: "People believe in the direction enough to invest real effort in it. They are engaged.",
+      name: "Heart \u00b7 Commitment", layer: "fire", question: "Does the team believe this strategy is worth real effort?",
       levels: {
-        1: { quote: "“We don't connect with this”", desc: "We don’t feel a clear connection to the strategic approach." },
-        2: { quote: "“We'll do it if asked”", desc: "Engagement depends on the direction or expectations set by leaders." },
-        3: { quote: "“We believe in it”", desc: "We believe in the strategy approach and support it when asked." },
-        4: { quote: "“We make it part of our work”", desc: "We actively look for ways to contribute and make the strategy part of our work." },
-        5: { quote: "“We bring others along”", desc: "We take ownership, actively engage, and motivate others." }
+        1: { quote: "“We’ve seen this before”", desc: "The team expects this to fade like the last few initiatives, and is waiting it out." },
+        2: { quote: "“We’ll do it if asked”", desc: "The team does what leaders ask, and no more." },
+        3: { quote: "“We think it matters”", desc: "The team believes in the direction and supports it when asked, but doesn’t go out of its way for it." },
+        4: { quote: "“We put effort in unasked”", desc: "The team looks for ways to contribute without being asked, and raises problems early because it wants this to work." },
+        5: { quote: "“We bring others along”", desc: "The team’s belief spreads. It wins over sceptics and keeps others going when progress is slow." }
       }
     },
     enablement: {
-      name: "Enablement", layer: "fire", question: "People have the authority, tools, processes, and leadership backing to act.",
+      name: "Hands \u00b7 Authority to act", layer: "fire", question: "Can the team act on what it decides?",
       levels: {
-        1: { quote: "“We can’t act”", desc: "We don’t have the tools, clarity, or support to act." },
-        2: { quote: "“We don’t own action”", desc: "Decisions and actions are largely driven by others, not by us." },
-        3: { quote: "“We act when needed”", desc: "We can act autonomously when we spot strategic opportunities." },
-        4: { quote: "“Acting is expected”", desc: "Taking action on strategic opportunities is expected and part of how we work." },
-        5: { quote: "“We keep improving how we act”", desc: "We are empowered to act and continuously improve how we execute the strategy." }
+        1: { quote: "“We can’t act”", desc: "The team lacks the time, tools or approvals to act. Things get agreed, then nothing happens." },
+        2: { quote: "“We wait for permission”", desc: "The team could act, but most changes need sign-off from above. Work waits for a signature." },
+        3: { quote: "“We act within limits”", desc: "The team makes routine changes itself. Anything bigger still needs several approvals." },
+        4: { quote: "“We act on what we decide”", desc: "The team has the time, tools and authority to act on its decisions, and leaders back it when it does." },
+        5: { quote: "“We clear our own obstacles”", desc: "The team fixes whatever slows it down, from a tool to a process, without waiting to be asked." }
       }
     }
   };
@@ -750,24 +750,24 @@
   var PATTERNS = {
     fullPile: {
       name: "The Full Pile", shape: "Priorities 1–2 · the rest respectable",
-      body: "The machinery works. It is being asked to carry more than it can.",
+      body: "The system works. It is being asked to carry more than it can.",
       recognise: "Every initiative is live and none is finished. Nothing was ever stopped.",
       trap: "Buying a tracking tool. You cannot track your way out of too much work."
     },
     machineWithoutFire: {
-      name: "Machine Without Fire", shape: "Machine 3+ · Fire 1–2",
+      name: "System Without People", shape: "System 3+ · People 1–2",
       body: "Cadence, owners and dashboards are all in place, and nothing moves.",
       recognise: "Reviews are well attended, well documented, and change nothing.",
-      trap: "Adding mechanism. It makes things worse — a fire problem treated with more machine."
+      trap: "Adding more system. It makes things worse: a people problem treated with more structure."
     },
     fireWithoutMachine: {
-      name: "Fire Without Machine", shape: "Fire 3+ · Machine 1–2",
+      name: "People Without System", shape: "People 3+ · System 1–2",
       body: "Committed, capable people producing genuinely uncoordinated effort.",
       recognise: "Pockets of real progress that never add up, and burnout in the best teams.",
       trap: "Celebrating the pockets. Goodwill does not scale, and the good people leave."
     },
     localOptimum: {
-      name: "Local Optimum", shape: "Communication 1–2 · the rest 3+",
+      name: "Local Optimum", shape: "Visibility 1–2 · the rest 3+",
       body: "Every unit executes well against its own version of the strategy.",
       recognise: "Two teams discover in month nine that they built for different assumptions.",
       trap: "Another all-hands. Visibility by default beats visibility by event."
@@ -831,7 +831,7 @@
   function setProgress(index){
     var el = ELEMENTS[ALL_ORDER[index]];
     document.getElementById("progressShell").classList.add("active");
-    document.getElementById("progressLayer").textContent = el.layer === "machine" ? "The machine" : "The fire";
+    document.getElementById("progressLayer").textContent = el.layer === "machine" ? "The system" : "Your people";
     document.getElementById("progressCount").textContent = (index + 1) + " of 7";
     document.getElementById("progressFill").style.width = ((index) / 7 * 100) + "%";
   }
@@ -889,14 +889,13 @@
     var key = ALL_ORDER[index];
     var el = ELEMENTS[key];
 
-    document.getElementById("qEyebrow").textContent = (el.layer === "machine" ? "The machine" : "The fire") + " · " + el.name;
+    document.getElementById("qEyebrow").textContent = (el.layer === "machine" ? "The system" : "Your people") + " · " + el.name;
     document.getElementById("qTitle").textContent = el.name;
     document.getElementById("qQuestion").textContent = el.question;
     document.getElementById("qLegend").textContent = el.name + ": " + el.question;
     var teamLabel = (state.teamName || "").trim();
-    document.getElementById("qScope").textContent = el.layer === "machine"
-      ? "Answer for " + (teamLabel || "your team") + ", as the team experiences it day to day."
-      : "Answer for " + (teamLabel || "your team") + ".";
+    document.getElementById("qScope").textContent =
+      "Answer for " + (teamLabel || "your team") + ", as the team experiences it day to day.";
 
     var optionsHtml = [1,2,3,4,5].map(function(score){
       var lvl = el.levels[score];
@@ -1011,7 +1010,7 @@
 
     buildStripRow(document.getElementById("machineStripRow"), MACHINE_ORDER, constraintKey);
     buildStripRow(document.getElementById("fireStripRow"), FIRE_ORDER, constraintKey);
-    document.getElementById("fireRowLabel").textContent = "The fire";
+    document.getElementById("fireRowLabel").textContent = "Your people";
     document.getElementById("resultsKicker").textContent = "Your results" +
       (state.teamName && state.teamName.trim() ? " \u00b7 " + state.teamName.trim() : "");
 
@@ -1033,7 +1032,7 @@
       constraintArea.innerHTML =
         '<h2 class="section-heading">Your constraint</h2>' +
         '<div class="constraint-block">' +
-          '<span class="layer-pill">' + (el.layer === "machine" ? "The machine" : "The fire") + '</span>' +
+          '<span class="layer-pill">' + (el.layer === "machine" ? "The system" : "Your people") + '</span>' +
           '<div class="element-name">' + el.name + '</div>' +
           '<p class="recognise"><strong>You will recognise it if</strong>' + fm.recognise + '</p>' +
           '<p class="constraint-extra">' + extra + '</p>' +
@@ -1056,7 +1055,7 @@
         '<h2 class="section-heading">Your constraint</h2>' +
         '<div class="no-constraint-block">' +
           '<h2>Nothing is setting a ceiling right now.</h2>' +
-          '<p>The machine reads systematic or better across all four elements, and the fire meets its required stage. That is a genuinely uncommon result on a self-score — and it is exactly the profile most likely to be over-scored by a single respondent. Send the same seven questions to two or three people who deliver this strategy day to day before you accept it.</p>' +
+          '<p>The system reads systematic or better across all four friction points, and your people meet their required stage. That is a genuinely uncommon result on a self-score — and it is exactly the profile most likely to be over-scored by a single respondent. Send the same seven questions to two or three people who deliver this strategy day to day before you accept it.</p>' +
         '</div>';
       firstMoveArea.innerHTML = "";
       antiPatternArea.innerHTML = "";
@@ -1169,7 +1168,7 @@
       var el = ELEMENTS[constraint.key];
       var fm = FIRST_MOVE[constraint.key];
       f["fields[stall_constraint]"] = el.name;
-      f["fields[stall_layer]"] = el.layer === "machine" ? "Machine" : "Fire";
+      f["fields[stall_layer]"] = el.layer === "machine" ? "System" : "People";
       f["fields[stall_first_move]"] = fm.move30;
       f["fields[stall_watch_90]"] = fm.watch90;
     } else {
