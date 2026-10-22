@@ -270,9 +270,6 @@
   .move-row .move-label{ font-size:var(--fs-caption); text-transform:uppercase; letter-spacing:.05em; font-weight:700; color:var(--amber); margin-bottom:4px; }
   .move-row p{ font-size:var(--fs-small); margin:0; }
 
-  .anti-pattern{ margin-bottom:32px; }
-  .anti-pattern h3{ font-size:var(--fs-h3); margin-bottom:8px; }
-  .anti-pattern p{ font-size:var(--fs-small); color:var(--muted); }
 
   .blindspot-block{ margin-bottom:8px; }
   .blindspot-block h3{ font-size:var(--fs-h3); margin-bottom:8px; }
@@ -378,9 +375,6 @@
     .pattern-footnote{ font-size:7.5pt; margin-bottom:10px; }
     .move-row{ margin-bottom:8px; }
     .move-row p{ font-size:8pt; }
-    .anti-pattern{ margin-bottom:10px; }
-    .anti-pattern h3{ font-size:9.5pt; margin-bottom:3px; }
-    .anti-pattern p{ font-size:8pt; }
 
     .blindspot-block h3{ font-size:9.5pt; margin-bottom:4px; }
     .blindspot-block p{ font-size:8pt; }
@@ -535,8 +529,6 @@
       <div id="patternArea"></div>
 
       <div id="firstMoveArea"></div>
-
-      <div id="antiPatternArea"></div>
 
       <hr class="dotted-rule">
 
@@ -695,41 +687,46 @@
     priorities: {
       recognise: "Your improvement list from January is still open, and eleven things have been added to it since.",
       move30: "Run one stop-session: list everything that is live and take three things off it. Record where the freed-up time went.",
-      watch90: "Whether the list is shorter, not merely re-ordered."
+      watch90: "Whether the list is shorter, not merely re-ordered.",
+      avoid: "A new prioritisation template or scoring matrix. It ranks the list without shortening it."
     },
     ownership: {
       recognise: "The status update exists because somebody asked for it on Thursday.",
       move30: "Put one named owner and one indicator against each live priority. One name, not a team.",
-      watch90: "Whether updates start arriving before they are requested."
+      watch90: "Whether updates start arriving before they are requested.",
+      avoid: "A RACI chart. It spreads each priority across four columns, which is how ownership got shared in the first place."
     },
     accountability: {
       recognise: "The review moves whenever the calendar gets tight. It is the first thing to move.",
       move30: "Fix one review in the calendar for the next six months and do not move it. Decisions only, no reporting.",
-      watch90: "Whether it produces decisions or produces minutes."
+      watch90: "Whether it produces decisions or produces minutes.",
+      avoid: "Another meeting. More reviews that end in updates only produce more updates."
     },
     communication: {
       recognise: "People find out what another site is doing at the annual meeting.",
       move30: "Make one team's progress visible to the others by default, without anyone having to ask for it.",
-      watch90: "Whether any team changes its plan because of what it saw."
+      watch90: "Whether any team changes its plan because of what it saw.",
+      avoid: "A new dashboard or intranet page. Results posted where nobody looks still don\u2019t reach anyone."
     },
     capability: {
       recognise: "People can recite the strategy but cannot say what it changes about their own week.",
       move30: "Ask five people to write down what the strategy changes about their week. Read the answers yourself.",
-      watch90: "Whether the answers converge."
+      watch90: "Whether the answers converge.",
+      avoid: "A strategy roadshow or training course. People leave able to recite the strategy, but still can\u2019t say what it changes about their week."
     },
     commitment: {
       recognise: "Compliance without argument. Nobody pushes back, and nobody volunteers.",
       move30: "Ask those same five what they would push back on if it were safe to do so.",
-      watch90: "Whether anyone volunteers something you did not already know."
+      watch90: "Whether anyone volunteers something you did not already know.",
+      avoid: "An offsite or kick-off event. It lifts commitment for about nine days."
     },
     enablement: {
       recognise: "The right decision needs four approvals, so the safe decision gets made instead.",
       move30: "Take one decision that currently needs your sign-off and stop requiring it.",
-      watch90: "Whether it gets made faster, and whether it gets made worse."
+      watch90: "Whether it gets made faster, and whether it gets made worse.",
+      avoid: "Telling people they\u2019re empowered without removing a single sign-off."
     }
   };
-
-  var ANTI_PATTERN = "The reflex response to a low score is a new template, a new dashboard or an offsite. Templates fix Priorities only if something actually comes off the list. Dashboards fix Ownership only if a name is attached to each line. Offsites fix Commitment for about nine days.";
 
   var PATTERN_FOOTNOTE = "None of these is a verdict on your people. Each one is a description of what the organisation currently makes easy, and every one of them is the predictable result of a system somebody designed on purpose.";
 
@@ -1016,7 +1013,6 @@
 
     var constraintArea = document.getElementById("constraintArea");
     var firstMoveArea = document.getElementById("firstMoveArea");
-    var antiPatternArea = document.getElementById("antiPatternArea");
 
     if (constraint) {
       var el = ELEMENTS[constraintKey];
@@ -1043,13 +1039,9 @@
         '<div class="first-move">' +
           '<div class="move-row"><div class="move-label">Inside 30 days</div><p>' + fm.move30 + '</p></div>' +
           '<div class="move-row"><div class="move-label">Watch at 90 days</div><p>' + fm.watch90 + '</p></div>' +
+          '<div class="move-row"><div class="move-label">Avoid</div><p>' + fm.avoid + '</p></div>' +
         '</div>';
 
-      antiPatternArea.innerHTML =
-        '<div class="anti-pattern">' +
-          '<h3>What usually gets tried instead</h3>' +
-          '<p>' + ANTI_PATTERN + '</p>' +
-        '</div>';
     } else {
       constraintArea.innerHTML =
         '<h2 class="section-heading">Your constraint</h2>' +
@@ -1058,7 +1050,6 @@
           '<p>The system reads systematic or better across all four friction points, and your people meet their required stage. That is a genuinely uncommon result on a self-score — and it is exactly the profile most likely to be over-scored by a single respondent. Send the same seven questions to two or three people who deliver this strategy day to day before you accept it.</p>' +
         '</div>';
       firstMoveArea.innerHTML = "";
-      antiPatternArea.innerHTML = "";
     }
 
     var patternArea = document.getElementById("patternArea");
@@ -1171,11 +1162,13 @@
       f["fields[stall_layer]"] = el.layer === "machine" ? "System" : "People";
       f["fields[stall_first_move]"] = fm.move30;
       f["fields[stall_watch_90]"] = fm.watch90;
+      f["fields[stall_avoid]"] = fm.avoid;
     } else {
       f["fields[stall_constraint]"] = "None";
       f["fields[stall_layer]"] = "None";
       f["fields[stall_first_move]"] = "Test the self-score: ask three people who deliver the strategy to score it without seeing your answers.";
       f["fields[stall_watch_90]"] = "Whether their scores match yours.";
+      f["fields[stall_avoid]"] = "Taking one person\u2019s self-score as the final answer.";
     }
     return new URLSearchParams(f);
   }
