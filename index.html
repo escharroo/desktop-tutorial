@@ -312,6 +312,11 @@
   .email-status.error{ color:var(--error); font-weight:600; }
   .email-privacy{ font-size:var(--fs-caption); letter-spacing:0; color:var(--muted); margin:6px 0 0; }
   .email-privacy a{ color:var(--muted); }
+  .gate-list{ list-style:none; padding:0; margin:0 0 20px; }
+  .gate-list li{ position:relative; padding:9px 0 9px 28px; border-top:1px dashed var(--line); font-size:var(--fs-small); }
+  .gate-list li:last-child{ border-bottom:1px dashed var(--line); }
+  .gate-list li::before{ content:""; position:absolute; left:2px; top:13px; width:12px; height:12px; border-radius:50%; border:2px solid var(--amber); }
+  .gate-kicker{ font-size:var(--fs-caption); font-weight:600; text-transform:uppercase; letter-spacing:.08em; color:var(--amber); margin-bottom:6px; }
   .email-done h3{ margin-bottom:6px; }
   .email-done p{ font-size:var(--fs-small); color:var(--muted); margin:0; }
   @media (max-width:560px){ .email-fields{ grid-template-columns:1fr; } .email-block{ padding:22px 18px; } }
@@ -543,6 +548,35 @@
 
       <div id="firstMoveArea"></div>
 
+      <div class="email-block" id="emailBlock">
+        <form id="emailForm" novalidate>
+          <div class="gate-kicker">The rest of your results</div>
+          <h3 id="gateTitle">Your first move is ready</h3>
+          <p class="email-sub">Tell me where to send it. You&rsquo;ll get:</p>
+          <ul class="gate-list" id="gateList"></ul>
+          <div class="email-fields">
+            <label for="emName">First name
+              <input type="text" id="emName" name="name" autocomplete="given-name" required>
+            </label>
+            <label for="emEmail">Email
+              <input type="email" id="emEmail" name="email" autocomplete="email" required>
+            </label>
+          </div>
+          <label class="email-opt" for="emNewsletter">
+            <input type="checkbox" id="emNewsletter">
+            <span>Also sign me up for After the Approval, the monthly newsletter, written for people who have to make strategy land. I can unsubscribe anytime.</span>
+          </label>
+          <button class="btn block" type="submit" id="emSubmit">Send me my full results</button>
+          <p class="email-status" id="emStatus" aria-live="polite"></p>
+          <p class="email-privacy">Your name, email and scores are stored so I can send your results and follow up. <a href="https://trisynch.com/privacy-policy/" target="_blank" rel="noopener">Privacy policy</a></p>
+        </form>
+        <div class="email-done" id="emDone" hidden>
+          <h3>On its way.</h3>
+          <p>Your full results are heading to <strong id="emDoneAddress"></strong>. Open the email and click <em>Reopen my full results</em> to see everything on this page. It comes from Edwin@trisynch.com; if it isn&rsquo;t in your inbox within a few minutes, check your spam folder.</p>
+        </div>
+      </div>
+
+      <div id="fullOnly">
       <hr class="dotted-rule">
 
       <div class="blindspot-block">
@@ -558,37 +592,13 @@
           <p>In delays, in rework, in benefits that were signed off and never landed. Most leaders have never put a number on it, and the number is usually uncomfortable. Which means you are not paying for a fix so much as recovering what you have already lost.</p>
         </div>
       </div>
+      </div>
 
       <div class="cta-panel">
         <p class="cta-belief">Strategy moves at the speed of the people running it.</p>
         <h3 style="color:#fff;">Bring your seven scores.</h3>
         <p>Talk it through with me. Thirty minutes, and you'll know what your constraint is costing you and what it takes to clear it.</p>
         <a class="btn" href="https://outlook.office.com/bookwithme/user/e1c3b728c68b46a3b61120787fb7885c@trisynch.com/meetingtype/OCOqTT460keNa_p5IpkAug2?anonymous&amp;ismsaljsauthenabled&amp;ep=mlink" target="_blank" rel="noopener">Start a conversation &rarr;</a>
-      </div>
-      <div class="email-block" id="emailBlock">
-        <form id="emailForm" novalidate>
-          <h3>Get your results by email</h3>
-          <p class="email-sub">Your constraint, your first move, and a link that reopens this page, so your results are still there after you close it.</p>
-          <div class="email-fields">
-            <label for="emName">First name
-              <input type="text" id="emName" name="name" autocomplete="given-name" required>
-            </label>
-            <label for="emEmail">Email
-              <input type="email" id="emEmail" name="email" autocomplete="email" required>
-            </label>
-          </div>
-          <label class="email-opt" for="emNewsletter">
-            <input type="checkbox" id="emNewsletter">
-            <span>Also sign me up for After the Approval, the monthly newsletter, written for people who have to make strategy land. I can unsubscribe anytime.</span>
-          </label>
-          <button class="btn block" type="submit" id="emSubmit">Email me my results</button>
-          <p class="email-status" id="emStatus" aria-live="polite"></p>
-          <p class="email-privacy">Your answers stay on this page unless you ask for this email. If you do, your name, email and scores are stored so I can send it and follow up. <a href="https://trisynch.com/privacy-policy/" target="_blank" rel="noopener">Privacy policy</a></p>
-        </form>
-        <div class="email-done" id="emDone" hidden>
-          <h3>On its way.</h3>
-          <p>Your results are heading to <strong id="emDoneAddress"></strong>. It comes from Edwin@trisynch.com; if it isn't in your inbox within a few minutes, check your spam folder.</p>
-        </div>
       </div>
 
       <footer>
@@ -1014,6 +1024,11 @@
     }).join("");
   }
 
+  // Full results are shown only when opened from the emailed results link
+  // (or if sending the email fails). Otherwise the visitor sees the constraint
+  // and is invited to email themselves the rest.
+  var unlocked = false;
+
   function renderResults(){
     var scores = state.scores;
     var constraint = getPrimaryConstraint(scores, state.decisionShaping);
@@ -1048,7 +1063,7 @@
           '<p class="constraint-extra">' + extra + '</p>' +
         '</div>';
 
-      firstMoveArea.innerHTML =
+      firstMoveArea.innerHTML = !unlocked ? "" :
         '<h2 class="section-heading">Your first move</h2>' +
         '<div class="first-move">' +
           '<div class="move-row"><div class="move-label">Inside 30 days</div><p>' + fm.move30 + '</p></div>' +
@@ -1068,7 +1083,7 @@
 
     var patternArea = document.getElementById("patternArea");
     var patternKey = matchPattern(scores);
-    if (patternKey) {
+    if (patternKey && unlocked) {
       var pat = PATTERNS[patternKey];
       patternArea.innerHTML =
         '<h2 class="section-heading">Your pattern</h2>' +
@@ -1091,8 +1106,30 @@
     document.getElementById("printFooter").innerHTML =
       escapeHtml(dateStr) + (state.teamName ? " &middot; " + escapeHtml(state.teamName) : "") + " &middot; trisynch.com";
 
-    resetEmailBlock();
+    document.getElementById("fullOnly").hidden = !unlocked;
+    document.getElementById("emailBlock").hidden = unlocked && !emailFailed;
+    if (!unlocked) buildGate(constraint, patternKey);
+
+    if (!emailFailed) resetEmailBlock();
     showScreen("screen-results");
+  }
+
+  function buildGate(constraint, patternKey){
+    var items = [];
+    if (constraint) {
+      var name = ELEMENTS[constraint.key].name;
+      document.getElementById("gateTitle").textContent = "Your first move is ready";
+      items.push("What to do about " + escapeHtml(name) + " in the next 30 days");
+      items.push("What to watch for at 90 days");
+      items.push("The mistake to avoid while you fix it");
+    } else {
+      document.getElementById("gateTitle").textContent = "Your next step is ready";
+      items.push("How to test whether this score holds up");
+      items.push("What to look for in the answers you get back");
+    }
+    if (patternKey) items.push("The stall pattern your scores match, and the trap that comes with it");
+    items.push("A link that reopens this full dashboard whenever you need it");
+    document.getElementById("gateList").innerHTML = items.map(function(t){ return "<li>" + t + "</li>"; }).join("");
   }
 
   function escapeHtml(str){
@@ -1131,6 +1168,7 @@
   var emSubmit = document.getElementById("emSubmit");
   var emStatus = document.getElementById("emStatus");
   var emDone = document.getElementById("emDone");
+  var emailFailed = false;
 
   function setEmailStatus(msg, isError){
     emStatus.textContent = msg || "";
@@ -1141,7 +1179,7 @@
     emailForm.hidden = false;
     emDone.hidden = true;
     emSubmit.disabled = false;
-    emSubmit.textContent = "Email me my results";
+    emSubmit.textContent = "Send me my full results";
     setEmailStatus("");
     emName.removeAttribute("aria-invalid");
     emEmail.removeAttribute("aria-invalid");
@@ -1206,9 +1244,13 @@
     setEmailStatus("");
 
     function fail(){
+      // A broken form should never cost someone their results: show everything.
+      emailFailed = true;
+      unlocked = true;
+      renderResults();
       emSubmit.disabled = false;
-      emSubmit.textContent = "Email me my results";
-      setEmailStatus("That didn't go through. Please try again in a moment, or use Download PDF below.", true);
+      emSubmit.textContent = "Try again";
+      setEmailStatus("The email didn't go through, so your full results are now on this page. You can try sending them again.", true);
     }
 
     fetch(ML_ENDPOINT, { method: "POST", body: buildSubmission(name, email) })
@@ -1228,6 +1270,8 @@
   function doRestart(){
     if (location.hash) { try { history.replaceState(null, "", location.pathname + location.search); } catch (e) { /* ignore */ } }
     clearState();
+    unlocked = false;
+    emailFailed = false;
     state = { teamName: "", decisionShaping: null, scores: {}, completed: false };
     currentQuestionIndex = 0;
     teamNameInput.value = "";
@@ -1249,6 +1293,7 @@
     var linked = stateFromHash();
     if (linked) {
       state = linked;
+      unlocked = true;
       renderResults();
       return;
     }
