@@ -1251,7 +1251,7 @@
       renderResults();
       emSubmit.disabled = false;
       emSubmit.textContent = "Try again";
-      setEmailStatus("The email didn't go through, so your full results are shown below. You can try sending them again.", true);
+      setEmailStatus("The email didn't go through, so your full results are now on this page. You can try sending them again.", true);
     }
 
     fetch(ML_ENDPOINT, { method: "POST", body: buildSubmission(name, email) })
