@@ -411,6 +411,90 @@
     }
     a{ color:#000 !important; text-decoration:none !important; }
   }
+
+  /* ================= TriSynch Design System layer =================
+     Palette: White, Tribal Teal, Stygian, Graphite, Space, Steel, Smoke, Cloud, Amber.
+     One amber highlight per layout (the constraint tile). Square buttons, Stygian on
+     white / Tribal Teal on Stygian. Sentence-case captions, no all-caps labels. */
+  :root{
+    --ink:#1A2426;            /* Stygian */
+    --white:#FFFFFF;          /* surface */
+    --card:#EDEFF7;           /* Cloud */
+    --line:#D3D6E0;           /* Smoke */
+    --muted:#6E7180;          /* Graphite */
+    --panel:#1A2426;          /* Stygian */
+    --panel-border:#1A2426;
+    --panel-muted:#9DA2B3;    /* Space: secondary text on Stygian */
+    --panel-soft:#BCBFCC;     /* Steel: body text on Stygian */
+    --panel-line:#6E7180;     /* hairline on Stygian */
+    --action:#1A2426;         /* button fill on white */
+    --action-hover:#507075;
+    --radius:15px;
+    --radius-sm:15px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ink:#FFFFFF;
+      --white:#1A2426;        /* Stygian ground */
+      --card:#2F4245;         /* Tribal Teal 40% over Stygian */
+      --line:#6E7180;         /* Graphite hairline */
+      --muted:#9DA2B3;        /* Space */
+      --panel:#1A2426;        /* Stygian, outlined, so the amber constraint tag keeps its contrast */
+      --panel-border:#6E7180;
+      --action:#507075;       /* Tribal Teal buttons on Stygian */
+      --action-hover:#3F5A5E;
+    }
+  }
+
+  /* Secondary text inside Cloud panels: Graphite is too faint there, so use ink at regular weight */
+  .layer-card, .email-block, .constraint-block, .pattern-block, .first-move, .q-scope,
+  .no-constraint-block, .resume-banner{ --muted: var(--ink); }
+  .layer-card p, .email-sub, .email-privacy, .email-done p, .constraint-extra, .pattern-shape,
+  .q-scope{ font-weight:400; }
+
+  /* Buttons: square, filled, Geist Medium */
+  .btn{ background:var(--action); color:#fff; border-radius:0; font-weight:500; }
+  .btn:hover{ background:var(--action-hover); }
+  .btn.secondary{ border-radius:0; }
+  .btn.secondary:hover{ border-color:var(--ink); }
+  .site-btn{ border-radius:0; font-weight:500; }
+  .yesno button{ border-radius:0; font-weight:500; }
+  .yesno button.selected{ background:var(--action); border-color:var(--action); }
+  .field input[type="text"], .email-fields input{ border-radius:0; }
+  .btn:focus-visible, a:focus-visible, input:focus-visible, .opt-label:has(input:focus-visible){
+    outline:2px solid var(--ink); outline-offset:2px;
+  }
+
+  /* Labels: sentence case captions in muted ink, no amber */
+  .kicker, .q-eyebrow, .gate-kicker, .progress-meta .layer-tag, .opt-body .opt-stage,
+  .move-row .move-label, .constraint-block .recognise strong, .pattern-block .pattern-sub{
+    color:var(--muted); text-transform:none; letter-spacing:0; font-weight:500;
+  }
+  .kicker, .q-eyebrow, .gate-kicker{ font-size:var(--fs-small); }
+  .move-row .move-label{ font-weight:600; }
+  .option input:checked + .opt-label{ background:var(--white); border-color:var(--ink); }
+  .option input:checked + .opt-label .opt-num{ background:var(--ink); border-color:var(--ink); color:var(--white); }
+  .constraint-block .layer-pill{ border-radius:0; text-transform:none; letter-spacing:0; font-size:var(--fs-caption); font-weight:500; }
+
+  /* Rules and panels */
+  .dotted-rule{ border-top:1px solid var(--line); opacity:1; }
+  .resume-banner{ background:var(--card); }
+  .pattern-block{ background:var(--card); border:none; }
+  .gate-list li::before{ border-color:var(--teal); }
+
+  /* Score strip on Stygian: the one amber highlight is the constraint tile */
+  .strip-row-label{ color:var(--panel-muted); text-transform:none; letter-spacing:0; font-weight:500; font-size:var(--fs-caption); }
+  .strip-tile{ background:transparent; border-color:var(--panel-line); border-width:1px; }
+  .strip-tile .tile-name{ color:var(--panel-muted); text-transform:none; letter-spacing:0; font-size:.75rem; }
+  .strip-tile .tile-stage{ color:var(--panel-muted); }
+  .strip-tile.constraint .tile-flag{ text-transform:none; letter-spacing:0; border-radius:0; font-size:.68rem; }
+
+  /* Call-to-action panel: Tribal Teal button on Stygian, no amber */
+  .cta-panel p{ color:var(--panel-soft); }
+  .cta-panel p.cta-belief{ color:var(--panel-muted); }
+  .cta-panel .btn{ background:#507075; }
+  .cta-panel .btn:hover{ background:#3F5A5E; }
+  .cta-panel .btn:focus-visible{ outline-color:#fff; }
 </style>
 </head>
 <body>
